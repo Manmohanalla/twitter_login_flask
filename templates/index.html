@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Get Twitter Followers</title>
+       <link rel="stylesheet" media="screen" href ="static/bootstrap.min.css">
+       <link rel="icon" href="http://vignette1.wikia.nocookie.net/survivor-org/images/5/52/M_title.png/revision/latest?cb=20130927203814">
+       <link rel="stylesheet" href="static/bootstrap-theme.min.css">
+       <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+ 
+    </head>
+    <body>
+ <div style="float:right">
+<form align="right" name="form1" method="post" action="/login">
+  <label class="logoutLblPos">
+  <input name="submit2" type="submit" id="submit2" value="log out">
+  </label>
+</form>
+</div>
+ 
+<div class="container">
+ 
+ 
+  <h2>Common Follower in Twitter </h2>
+  <form  action="/" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <label for="name_a">Screen Name of Follower A:</label>
+      <input type="text" class="form-control" id="name" name="name_a" placeholder="screen_name">
+      <br>
+      <label for="name_b">Screen Name of Follower B:</label>
+      <input type="text" class="form-control" id="name_b" name="name_b" placeholder="screen_name">
+ 
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  <br>
+  
+  <h4><a href="/findtweetkeyword">Look in Tweets with Key-word</a></span></h4>
+ 
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Message: </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+</div>
+<br>            
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+    <head>
+      <title>Search the tweets with the keyword in it</title>
+      <link rel="stylesheet" media="screen" href ="static/bootstrap.min.css">
+      <link rel="icon" href="http://vignette1.wikia.nocookie.net/survivor-org/images/5/52/M_title.png/revision/latest?cb=20130927203814">
+      <link rel="stylesheet" href="static/bootstrap-theme.min.css">
+      <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+ 
+    </head>
+    <body>
+ 
+ 
+<div class="container">
+  <h2>Check Loan Status </h2>
+  <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <label for="name">Screen Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="screen_name">
+      <br>
+      <label for="word">Keyword:</label>
+      <input type="text" class="form-control" id="word" name="word" placeholder="keyword to search">
+ 
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  <br>
+  <h4><a href="/">Find Common Followers</a></h4></span>
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error:" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Message: </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+            
+            {% if "Error:" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+</div>
+<br>            
+</div>
+</div>
+</body>
+</html>
