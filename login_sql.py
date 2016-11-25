@@ -1,6 +1,4 @@
 ''' py'''
-from hashlib import md5
-
 import pymysql.cursors
 F_NAME = 'f_name'
 L_NAME = 'l_name'
@@ -15,6 +13,7 @@ class LoginPage(object):
         #creating connection
         connection = pymysql.connect(host='localhost',
                                      user='root',
+                                     passwd='in',
                                      db='login_twitter',
                                      charset='utf8mb4',
                                      cursorclass=pymysql.cursors.DictCursor)
@@ -53,10 +52,10 @@ class LoginPage(object):
             condition = "email = %s"
         else:
             check = username
-            condition = "USERNAME = %s"
+            condition = "username = %s"
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT USERNAME, Email, PASSWORD FROM `LOGIN` WHERE " + condition
+            sql = "SELECT username, email, password FROM `login` WHERE " + condition
             cursor.execute(sql, (check))
             result = cursor.fetchone()
             connection.close()
@@ -66,14 +65,14 @@ class LoginPage(object):
         '''validating credentials'''
         db_lookup = self.look_up(username=username)
         if db_lookup is not None:
-            if db_lookup['PASSWORD'] == password:
+            if db_lookup['password'] == password:
                 return True
             else:
                 return 'Please check your username, password'
         else:
             return 'Please check your username, password'
 
-c = LoginPage()
+#c = LoginPage()
 #print c.look_up('','sendmanu@yahoo.co.in')
 #print c.sign_up('sindhoor','mandava', 'sindhoor', 'msindhoor@yahoo.co.in', 'iamtoogood')
 #print c.sign_in('barewolf','iamtoogood')
